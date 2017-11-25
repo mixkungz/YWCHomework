@@ -152,7 +152,45 @@ server.get('/namelist/content',async function(req, res) {
     }
     res.send(contentList)
 })
+server.get('/namelist/morning/:program',async function(req,res){
+    const input = req.params.program
+    const data = []
+    console.log(input)
+    let list = await axios({
+        method: 'get',
+        url: 'http://localhost:3001/namelist/morning'
+      }).then(function(response) {
+          return response.data
+    });
+    for(i=0;i<list.length;i++){
+        console.log(`${input}`+i)
+        console.log(list[i].interviewRef.substr(0,2).toLowerCase())
+        if(list[i].interviewRef.substr(0,2).toLowerCase() == `${input}`){
+            data.push(list[i])
+        }
+    }
+    res.send(data)
 
+})
+server.get('/namelist/afternoon/:program',async function(req,res){
+    const input = req.params.program
+    const data = []
+    console.log(input)
+    let list = await axios({
+        method: 'get',
+        url: 'http://localhost:3001/namelist/afternoon'
+      }).then(function(response) {
+          return response.data
+    });
+    for(i=0;i<list.length;i++){
+        console.log(`${input}`+i)
+        console.log(list[i].interviewRef.substr(0,2).toLowerCase())
+        if(list[i].interviewRef.substr(0,2).toLowerCase() == `${input}`){
+            data.push(list[i])
+        }
+    }
+    res.send(data)
 
+})
 
 module.exports = server
