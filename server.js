@@ -92,6 +92,67 @@ server.get('/namelist/afternoon', async function(req, res) {
     console.log(afternoonList.length)
     res.send(afternoonList)
 })
+server.get('/namelist/programming',async function(req, res) {
+    const programmingList = []
+    let list = await axios({
+        method: 'get',
+        url: 'https://ywc15.ywc.in.th/api/interview'
+      }).then(function(response) {
+          return response.data
+    });
+    for(i=0;i<list.length;i++){
+        if(list[i].interviewRef.substr(0,2) == 'PG'){
+            programmingList.push(list[i])
+        }
+    }
+    res.send(programmingList)
+})
+server.get('/namelist/design',async function(req, res) {
+    const designList = []
+    let list = await axios({
+        method: 'get',
+        url: 'https://ywc15.ywc.in.th/api/interview'
+      }).then(function(response) {
+          return response.data
+    });
+    for(i=0;i<list.length;i++){
+        if(list[i].interviewRef.substr(0,2) == 'DS'){
+            designList.push(list[i])
+        }
+    }
+    res.send(designList)
+})
+server.get('/namelist/marketing',async function(req, res) {
+    const marketingList = []
+    let list = await axios({
+        method: 'get',
+        url: 'https://ywc15.ywc.in.th/api/interview'
+      }).then(function(response) {
+          return response.data
+    });
+    for(i=0;i<list.length;i++){
+        if(list[i].interviewRef.substr(0,2) == 'MK'){
+            marketingList.push(list[i])
+        }
+    }
+    res.send(marketingList)
+})
+server.get('/namelist/content',async function(req, res) {
+    const contentList = []
+    let list = await axios({
+        method: 'get',
+        url: 'https://ywc15.ywc.in.th/api/interview'
+      }).then(function(response) {
+          return response.data
+    });
+    for(i=0;i<list.length;i++){
+        if(list[i].interviewRef.substr(0,2) == 'CT'){
+            contentList.push(list[i])
+        }
+    }
+    res.send(contentList)
+})
+
 
 
 module.exports = server
