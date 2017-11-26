@@ -47,7 +47,8 @@ class Announce extends React.Component{
           accessor: 'realname',
         }],
         select:[],
-        search:[]
+        search:[],
+        branchNow:''
         
       }
       componentWillMount = async() =>{
@@ -207,15 +208,52 @@ class Announce extends React.Component{
         
         if(input=='pg'){
           this.setState({select:this.state.allProgramming})
+          this.setState({branchNow:'pg'})
         }
         else if(input=='ds'){
           this.setState({select:this.state.allDesign})
+          this.setState({branchNow:'ds'})
         }
         else if(input=='mk'){
           this.setState({select:this.state.allMarketing})
+          this.setState({branchNow:'mk'})
         }
         else if(input=='ct'){
           this.setState({select:this.state.allContent})
+          this.setState({branchNow:'ct'})
+        }
+      }
+      timeChange = (e) =>{
+        if(e.target.value=='all'){
+          this.setState({select:this.state.all})
+        }
+        else if(e.target.value=='morning'){
+          if(this.state.branchNow =='pg'){
+            this.setState({select:this.state.allMorningProgramming})
+          }
+          else if(this.state.branchNow =='ds'){
+            this.setState({select:this.state.allMorningDesign})
+          }
+          else if(this.state.branchNow =='mk'){
+            this.setState({select:this.state.allMorningMarketing})
+          }
+          else if(this.state.branchNow =='ct'){
+            this.setState({select:this.state.allMorningContent})
+          }
+        }
+        else if(e.target.value=='afternoon'){
+          if(this.state.branchNow =='pg'){
+            this.setState({select:this.state.allAfternoonProgramming})
+          }
+          else if(this.state.branchNow =='ds'){
+            this.setState({select:this.state.allAfternoonDesign})
+          }
+          else if(this.state.branchNow =='mk'){
+            this.setState({select:this.state.allAfternoonMarketing})
+          }
+          else if(this.state.branchNow =='ct'){
+            this.setState({select:this.state.allAfternoonContent})
+          }
         }
       }
     render(){
@@ -236,10 +274,10 @@ class Announce extends React.Component{
                     </div>
                     <div className="row">
                       <div className="col-5 mx-auto mt-4">
-                      <select class="form-control" id="exampleFormControlSelect1">
-                            <option>All</option>
-                            <option>Morning</option>
-                            <option>Afternoon</option>
+                      <select className="form-control" id="exampleFormControlSelect1" onChange={this.timeChange}>
+                            <option value="all">All</option>
+                            <option value="morning">Morning</option>
+                            <option value="afternoon">Afternoon</option>
                         </select>
                       </div>
                     </div>
@@ -292,7 +330,7 @@ class Announce extends React.Component{
                       <button className="btn btn-success btn-block" onClick={()=>this.change('ct')}>Content</button>
 
                       <input type="text" onChange={this.searchChange} />
-                      <table class="table">
+                      <table className="table">
                           <thead>
                               <tr>
                                 <th scope="col">#</th>
