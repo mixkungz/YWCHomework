@@ -1,16 +1,44 @@
 // import ReactTable from 'react-table'
 import Head from '../components/head'
-import ReactTable from 'react-table'
 import Axios from 'axios'
 import styled , { injectGlobal } from 'styled-components'
 
-let contacts = [{
-  name:'mx',
-  phone:'0022'
-},{
-  name:'ds',
-  phone:'021'
-}]
+const HeadText = styled.h1`
+  text-shadow: 1px 2px 6px rgba(51,204,234,0.91);
+  color:white;
+  text-align:center;
+`
+const Bigbox = styled.div`
+  min-height:100vh;
+  overflow:hidden;
+  background-color:#1e262f;
+  // align-items: center;
+  // justify-content: center;
+`
+
+injectGlobal`
+  .mybtn{
+    padding : 0.5em 4em 0.5em 4em;
+    background:transparent;
+    color:white;
+    border:1px solid #4ccdea;
+  }
+  .mybtn:hover{
+    background:#4ccdea;
+    color:white;
+    transition:0.7s;
+  }
+  .logo{
+    padding-top:20%;
+    max-width:250px;
+  }
+  @media only screen and (max-width: 500px) {
+    .mybtn{
+      padding : 0.5em 2em 0.5em 2em;
+    }
+  }
+`
+
 class Main extends React.Component{
   state={
     all:[],
@@ -211,64 +239,53 @@ class Main extends React.Component{
 
 
   render() {
-    const data = [
-      {
-        name: 'Tanner Linsley',
-        age: 26,
-      },
-      {
-        name: 'Tanner Linsley',
-        age: 16,
-      },
-      {
-        name: 'Tanner Linsley',
-        age: 13,
-    }]
-    const columns = [{
-        Header: 'Name',
-        accessor: 'name'
-      }, {
-        Header: 'Age',
-        accessor: 'age',
-        Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
-    }]
-    let filteredContacts = this.props.contacts;
-    // console.log(this.state.select)
+
       return(
           <div>
               <Head />
-              <div className="container">
-                <div className="row">
-                  <div className="col-6 mx-auto">
-                      
-                    <button className="btn btn-success btn-block" onClick={()=>this.change('pg')}>Programming</button>
-                    <button className="btn btn-success btn-block" onClick={()=>this.change('ds')}>Design</button>
-                    <button className="btn btn-success btn-block" onClick={()=>this.change('mk')}>Marketing</button>
-                    <button className="btn btn-success btn-block" onClick={()=>this.change('ct')}>Content</button>
-
-                    <input type="text" onChange={this.searchChange} />
-                    <table class="table">
-                        <thead>
-                            <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">Real Name</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                              this.state.select.map((data)=>
-                                <tr>
-                                  <th scope="row">{data.interviewRef}</th>
-                                  <td>{data.firstName} {data.lastName}</td>
-                                </tr>
-                              )
-                            }
-                            
-                        </tbody>
-                      </table>
-                  </div>
+              <Bigbox className="">
+                <div className="text-center">
+                  <img src="/static/img/logo.png" className="logo" />
                 </div>
-              </div>
+                <HeadText>อยากฟังผลแบบไหนหล่ะ</HeadText>
+                <div className="d-flex justify-content-center">
+                  <span className="mybtn mx-3 my-3">ตื่นเต้น</span>
+                  <span className="mybtn mx-3 my-3">ชิลๆ</span>
+                  {/* <Button className="mx-3">ตื่นเต้น</Button>
+                  <Button className="mx-3">ชิลๆ</Button> */}
+                </div>
+                  
+
+                    {/* <div className="col-6 mx-auto">
+                      <HeadText>YWC Interview Announcement</HeadText>
+                      <button className="btn btn-success btn-block" onClick={()=>this.change('pg')}>Programming</button>
+                      <button className="btn btn-success btn-block" onClick={()=>this.change('ds')}>Design</button>
+                      <button className="btn btn-success btn-block" onClick={()=>this.change('mk')}>Marketing</button>
+                      <button className="btn btn-success btn-block" onClick={()=>this.change('ct')}>Content</button>
+
+                      <input type="text" onChange={this.searchChange} />
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Real Name</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {
+                                this.state.select.map((data,index)=>
+                                  <tr key={index}>
+                                    <th scope="row">{data.interviewRef}</th>
+                                    <td>{data.firstName} {data.lastName}</td>
+                                  </tr>
+                                )
+                              }
+                              
+                          </tbody>
+                        </table>
+                    </div> */}
+              </Bigbox>
+              
           </div>
       )
     }
