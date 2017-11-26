@@ -7,10 +7,12 @@ const MyHead = () =>(
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         {/* CSS */}
         <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="bower_components/sweetalert2/dist/sweetalert2.min.css" />
         {/* JS */}
         <script src="/static/js/jquery-3.2.1.min.js"></script>
         <script src="/static/js/popper.min.js"></script>
         <script src="/static/js/bootstrap.min.js"></script>
+        <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
         {/* FONT */}
         <link href="https://fonts.googleapis.com/css?family=Kanit:300,400,500,700" rel="stylesheet" />
 
