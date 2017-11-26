@@ -48,7 +48,8 @@ class Announce extends React.Component{
         }],
         select:[],
         search:[],
-        branchNow:''
+        branchNow:'',
+        timeNow:''
         
       }
       componentWillMount = async() =>{
@@ -207,8 +208,8 @@ class Announce extends React.Component{
       change = (input) =>{
         
         if(input=='pg'){
-          this.setState({select:this.state.allProgramming})
           this.setState({branchNow:'pg'})
+          this.setState({select:this.state.allProgramming})
         }
         else if(input=='ds'){
           this.setState({select:this.state.allDesign})
@@ -228,6 +229,7 @@ class Announce extends React.Component{
           this.setState({select:this.state.all})
         }
         else if(e.target.value=='morning'){
+          
           if(this.state.branchNow =='pg'){
             this.setState({select:this.state.allMorningProgramming})
           }
@@ -242,6 +244,7 @@ class Announce extends React.Component{
           }
         }
         else if(e.target.value=='afternoon'){
+          
           if(this.state.branchNow =='pg'){
             this.setState({select:this.state.allAfternoonProgramming})
           }
@@ -254,6 +257,7 @@ class Announce extends React.Component{
           else if(this.state.branchNow =='ct'){
             this.setState({select:this.state.allAfternoonContent})
           }
+          
         }
       }
     render(){
