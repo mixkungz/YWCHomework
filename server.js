@@ -55,6 +55,26 @@ server.get('/namelist/morning', async function(req, res) {
     console.log(morningList.length)
     res.send(morningList)
 })
+server.get('/namelist/morning/:program',async function(req,res){
+    const input = req.params.program
+    const data = []
+    console.log(input)
+    let list = await axios({
+        method: 'get',
+        url: 'http://localhost:3001/namelist/morning'
+      }).then(function(response) {
+          return response.data
+    });
+    for(i=0;i<list.length;i++){
+        console.log(`${input}`+i)
+        console.log(list[i].interviewRef.substr(0,2).toLowerCase())
+        if(list[i].interviewRef.substr(0,2).toLowerCase() == `${input}`){
+            data.push(list[i])
+        }
+    }
+    res.send(data)
+
+})
 server.get('/namelist/afternoon', async function(req, res) {
     const afternoonList = []
     const type = ['PG','MK','DS','CT']
@@ -91,6 +111,26 @@ server.get('/namelist/afternoon', async function(req, res) {
     }
     console.log(afternoonList.length)
     res.send(afternoonList)
+})
+server.get('/namelist/afternoon/:program',async function(req,res){
+    const input = req.params.program
+    const data = []
+    console.log(input)
+    let list = await axios({
+        method: 'get',
+        url: 'http://localhost:3001/namelist/afternoon'
+      }).then(function(response) {
+          return response.data
+    });
+    for(i=0;i<list.length;i++){
+        console.log(`${input}`+i)
+        console.log(list[i].interviewRef.substr(0,2).toLowerCase())
+        if(list[i].interviewRef.substr(0,2).toLowerCase() == `${input}`){
+            data.push(list[i])
+        }
+    }
+    res.send(data)
+
 })
 server.get('/namelist/programming',async function(req, res) {
     const programmingList = []
@@ -151,46 +191,6 @@ server.get('/namelist/content',async function(req, res) {
         }
     }
     res.send(contentList)
-})
-server.get('/namelist/morning/:program',async function(req,res){
-    const input = req.params.program
-    const data = []
-    console.log(input)
-    let list = await axios({
-        method: 'get',
-        url: 'http://localhost:3001/namelist/morning'
-      }).then(function(response) {
-          return response.data
-    });
-    for(i=0;i<list.length;i++){
-        console.log(`${input}`+i)
-        console.log(list[i].interviewRef.substr(0,2).toLowerCase())
-        if(list[i].interviewRef.substr(0,2).toLowerCase() == `${input}`){
-            data.push(list[i])
-        }
-    }
-    res.send(data)
-
-})
-server.get('/namelist/afternoon/:program',async function(req,res){
-    const input = req.params.program
-    const data = []
-    console.log(input)
-    let list = await axios({
-        method: 'get',
-        url: 'http://localhost:3001/namelist/afternoon'
-      }).then(function(response) {
-          return response.data
-    });
-    for(i=0;i<list.length;i++){
-        console.log(`${input}`+i)
-        console.log(list[i].interviewRef.substr(0,2).toLowerCase())
-        if(list[i].interviewRef.substr(0,2).toLowerCase() == `${input}`){
-            data.push(list[i])
-        }
-    }
-    res.send(data)
-
 })
 
 module.exports = server
